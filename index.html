@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Starting a printer from scratch: where each brand sends you</title>
-<meta name="description" content="Canon, HP, Epson and Brother each hand you a short web address and nothing else. Here is what sits behind each one and what to have ready before you begin.">
+<title>Full package, driver only, or no driver at all: picking an install path</title>
+<meta name="description" content="Every printer brand offers more than one way to install. The choice you make in the first minute decides whether scanning works later. A plain guide to the options.">
 <link rel="canonical" href="https://printerxr.com/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,13 +14,14 @@
 <style>
   :root{
     --ink:#14202b;
-    --ink-soft:#4a5a68;
+    --ink-soft:#55646f;
     --paper:#ffffff;
-    --wash:#f4f7f9;
-    --rule:#dde5ea;
+    --wash:#f3f6f8;
+    --rule:#dfe6eb;
     --accent:#0f6fb8;
     --accent-deep:#0a4f84;
-    --measure:68ch;
+    --night:#122230;
+    --measure:66ch;
     --sans:"Onest",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
 
@@ -32,100 +33,133 @@
     color:var(--ink);
     font-family:var(--sans);
     font-size:17px;
-    line-height:1.65;
+    line-height:1.6;
   }
   img{max-width:100%;height:auto;display:block}
   a{color:var(--accent-deep)}
-  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  a:focus-visible{outline:2px solid #ffd166;outline-offset:3px;border-radius:2px}
 
-  .wrap{width:100%;max-width:820px;margin:0 auto;padding:0 20px}
-
-  /* header */
-  .masthead{border-bottom:1px solid var(--rule);background:var(--paper)}
-  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px}
-  .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;letter-spacing:-.01em;font-size:18px}
-  .brand img{height:26px;width:auto}
-  .masthead nav{display:flex;gap:20px;font-size:15px}
-  .masthead nav a{color:var(--ink-soft);text-decoration:none}
-  .masthead nav a:hover{color:var(--accent-deep);text-decoration:underline}
+  .wrap{width:100%;max-width:880px;margin:0 auto;padding:0 22px}
 
   /* hero */
-  .hero{padding:52px 0 34px;border-bottom:1px solid var(--rule);background:linear-gradient(180deg,var(--wash),var(--paper))}
+  .hero{
+    background:var(--night);
+    color:#eef4f8;
+    padding:70px 0 64px;
+  }
+  .hero .brandline{
+    display:inline-flex;align-items:center;gap:9px;
+    text-decoration:none;margin-bottom:30px;
+  }
+  .hero .brandline img{height:24px;width:auto}
   .hero h1{
-    font-size:clamp(29px,5.6vw,44px);
-    line-height:1.14;
-    margin:0 0 14px;
-    font-weight:700;
+    font-size:clamp(30px,5.8vw,46px);
+    line-height:1.12;
     letter-spacing:-.03em;
-    max-width:20ch;
+    font-weight:700;
+    margin:0 0 16px;
+    max-width:17ch;
+    color:#ffffff;
   }
-  .standfirst{margin:0;font-size:19px;color:var(--ink-soft);max-width:60ch}
-
-  /* article */
-  article{padding:38px 0 8px}
-  article p{max-width:var(--measure);margin:0 0 20px}
-  article h2{
-    font-size:23px;
+  .hero p{
+    margin:0 0 30px;
+    font-size:19px;
+    line-height:1.55;
+    color:#b9cad6;
+    max-width:54ch;
+  }
+  .cta{
+    display:inline-block;
+    background:#ffffff;
+    color:var(--night);
+    text-decoration:none;
     font-weight:600;
-    line-height:1.28;
-    margin:38px 0 12px;
-    letter-spacing:-.02em;
+    font-size:17px;
+    padding:14px 26px;
+    border-radius:7px;
   }
-  article h2:first-of-type{margin-top:8px}
-  article ul{max-width:var(--measure);margin:0 0 22px;padding-left:20px}
-  article li{margin-bottom:9px}
+  .cta:hover{background:#dbe8f1}
+  .cta:focus-visible{outline:2px solid #ffd166;outline-offset:3px}
+  .cta-note{display:block;margin-top:14px;font-size:14.5px;color:#8fa5b4}
 
-  /* a quiet pull-out, used once */
-  .note{
+  /* body */
+  main{padding:46px 0 0}
+  main p{max-width:var(--measure);margin:0 0 20px}
+  main h2{
+    font-size:24px;font-weight:600;letter-spacing:-.02em;
+    line-height:1.26;margin:40px 0 14px;
+  }
+  main h2:first-of-type{margin-top:0}
+  main h3{font-size:18.5px;font-weight:600;letter-spacing:-.01em;margin:26px 0 8px}
+
+  /* option rows, numbered because they are genuinely a choice of three paths */
+  .paths{max-width:var(--measure);margin:0 0 34px;padding:0;list-style:none;counter-reset:p}
+  .paths li{
+    counter-increment:p;
+    position:relative;
+    padding:18px 0 18px 46px;
+    border-top:1px solid var(--rule);
+  }
+  .paths li:last-child{border-bottom:1px solid var(--rule)}
+  .paths li::before{
+    content:counter(p);
+    position:absolute;left:0;top:19px;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--wash);color:var(--accent-deep);
+    font-size:14px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .paths strong{display:block;font-weight:600;margin-bottom:3px}
+  .paths span{color:var(--ink-soft);font-size:16px}
+
+  /* brand block */
+  .brand-row{
     max-width:var(--measure);
-    margin:0 0 26px;
-    padding:16px 18px;
-    background:var(--wash);
-    border-left:3px solid var(--accent);
-    border-radius:0 6px 6px 0;
-  }
-  .note p{margin:0;font-size:16px;color:var(--ink-soft)}
-
-  /* brand links block */
-  .portals{border-top:1px solid var(--rule);margin-top:40px;padding:30px 0 6px}
-  .portals h2{font-size:21px;margin:0 0 18px;font-weight:600;letter-spacing:-.02em}
-  .portals ul{list-style:none;margin:0;padding:0;max-width:var(--measure)}
-  .portals li{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:baseline;
-    gap:4px 10px;
-    padding:13px 0;
+    padding:22px 0;
     border-bottom:1px solid var(--rule);
-    margin:0;
   }
-  .portals li a{font-weight:600;text-decoration:none}
-  .portals li a:hover{text-decoration:underline}
-  .portals li span{color:var(--ink-soft);font-size:15.5px}
+  .brand-row h3{margin:0 0 6px}
+  .brand-row h3 a{text-decoration:none}
+  .brand-row h3 a:hover{text-decoration:underline}
+  .brand-row p{margin:0;color:var(--ink-soft);font-size:16.5px}
 
-  /* footer */
-  footer{border-top:1px solid var(--rule);margin-top:44px;padding:26px 0 50px;background:var(--wash)}
-  footer p{margin:0 0 8px;font-size:15px;color:var(--ink-soft);max-width:var(--measure)}
-  footer a{color:var(--accent-deep)}
-  .disclaimer{font-size:13.5px;color:var(--ink-soft);opacity:.85}
+  .callout{
+    max-width:var(--measure);
+    background:var(--wash);
+    border-radius:8px;
+    padding:20px 22px;
+    margin:30px 0;
+  }
+  .callout h3{margin:0 0 8px;font-size:17.5px}
+  .callout p{margin:0;font-size:16px;color:var(--ink-soft)}
+
+  footer{
+    margin-top:50px;
+    border-top:1px solid var(--rule);
+    padding:28px 0 56px;
+  }
+  footer p{margin:0 0 10px;font-size:15.5px;color:var(--ink-soft);max-width:var(--measure)}
+  .fine{font-size:13.5px;opacity:.85}
 
   @media (max-width:560px){
     body{font-size:16.5px}
-    .masthead nav{display:none}
-    .hero{padding:38px 0 28px}
+    .hero{padding:52px 0 48px}
+    .hero p{font-size:17.5px}
   }
 
   @media (prefers-color-scheme:dark){
     :root{
-      --ink:#e8eef3;
-      --ink-soft:#a3b2bf;
-      --paper:#101820;
-      --wash:#17222c;
+      --ink:#e9eff4;
+      --ink-soft:#a7b6c2;
+      --paper:#0e1720;
+      --wash:#18242f;
       --rule:#27343f;
       --accent:#4aa8e8;
       --accent-deep:#7cc2f0;
+      --night:#0a121a;
     }
-    .hero{background:linear-gradient(180deg,var(--wash),var(--paper))}
+    .cta{background:#7cc2f0;color:#08131c}
+    .cta:hover{background:#a5d6f5}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -135,87 +169,86 @@
 </head>
 <body>
 
-<header class="masthead">
+<header class="hero">
   <div class="wrap">
-    <a class="brand" href="https://printerxr.com">
-      <img src="https://printerxr.com/uploads/logo-mt66mv7q.webp" alt="PrinterXR" width="120" height="26">
+    <a class="brandline" href="https://printerxr.com">
+      <img src="https://printerxr.com/uploads/logo-mt66mv7q.webp" alt="PrinterXR" width="110" height="24">
     </a>
-    <nav>
-      <a href="https://printerxr.com/canon-printer-setup/">Canon</a>
-      <a href="https://printerxr.com/hp-printer-setup/">HP</a>
-      <a href="https://printerxr.com/epson-printer-setup/">Epson</a>
-      <a href="https://printerxr.com/brother-printer-setup/">Brother</a>
-    </nav>
+    <h1>The install choice nobody explains</h1>
+    <p>Every printer brand offers more than one way to install, and the box never says which one you're picking. Choose wrong and printing works fine while scanning quietly never arrives.</p>
+    <a class="cta" href="https://printerxr.com">Find your printer on PrinterXR</a>
+    <span class="cta-note">Setup guides for Canon, HP, Epson and Brother across Windows, macOS, ChromeOS, Linux, iOS and Android.</span>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <h1>A short web address is not a manual</h1>
-    <p class="standfirst">Every major printer now ships with one line of instruction printed on a folded sheet. Here is what actually sits behind each of those addresses, and what to have in front of you before you start typing.</p>
-  </div>
-</section>
-
 <div class="wrap">
-<article>
+<main>
 
-  <p>Printer boxes used to come with a booklet. Now they come with a web address, a power cable, and the assumption that you will work out the rest. It's a reasonable assumption most of the time. The trouble starts when the installer can't find the printer, or finds it and then loses it, and the folded sheet has nothing else to say.</p>
+  <p>Most people install a printer once and never think about it again, which is exactly why the choice made during those two minutes causes trouble months later. The installer offers options, everyone clicks the recommended one, and the difference only surfaces the day someone needs to scan a form.</p>
 
-  <p>What follows is the short version of where each brand sends you and what that page will and won't do for you.</p>
+  <p>There are three ways to get a printer working, and they are not equivalent.</p>
 
-  <h2>Canon</h2>
+  <ol class="paths">
+    <li>
+      <strong>The full software package</strong>
+      <span>Everything the brand makes for that model. Printing, scanning, ink monitoring, firmware updates, and usually a utility for alignment and head cleaning. Biggest download, most background processes, and the only option that reliably gives you scanning.</span>
+    </li>
+    <li>
+      <strong>The driver on its own</strong>
+      <span>Just enough to print. Small, quiet, no extra software running at startup. Fine for a laser printer you only ever print from, useless if the machine has a scanner you intend to use.</span>
+    </li>
+    <li>
+      <strong>No driver at all</strong>
+      <span>Modern operating systems can print to most network printers with nothing installed. Apple calls it AirPrint, Android has an equivalent built in, and Windows will often add a printer it discovers on the network by itself. Convenient, but you lose tray selection, duplex control, and scanning.</span>
+    </li>
+  </ol>
 
-  <p>Canon prints <a href="https://printerxr.com/canon-printer-setup/">ij.start.canon</a> on the quick start sheet for almost everything it sells, from the cheapest home all-in-one up to the office machines. The page asks for a model number and then hands you a package for your operating system.</p>
+  <p>The rule of thumb is simple. If the machine has a scanner lid, install the full package. If it doesn't, the driver alone will serve you better and leave your system cleaner.</p>
 
-  <p>One detail matters more than it looks: use the model string from the label on the machine, not the name on the carton. Canon's retail names and its technical model names drift apart, and picking the wrong one gets you software that installs perfectly and then never finds the printer.</p>
+  <h2>How each brand presents the choice</h2>
 
-  <h2>HP</h2>
-
-  <p>HP's route is <a href="https://printerxr.com/hp-printer-setup/">123.hp.com/setup</a>, and it behaves differently from the others. Rather than a standalone driver, HP mostly pushes you toward its app, which carries the driver inside it and handles the wireless pairing as part of the walkthrough.</p>
-
-  <div class="note">
-    <p>Watch the enrollment checkbox during an HP install. Opting into HP+ commits the printer to original HP cartridges for the rest of its life and requires it to stay connected to the internet. It cannot be undone afterwards, and it goes past most people in about two seconds.</p>
+  <div class="brand-row">
+    <h3><a href="https://printerxr.com/canon-printer-setup/">ij.start.canon</a></h3>
+    <p>Canon leads with a recommended bundle and puts the individual components lower down the same page. The scanning utility is one of those separate components, so a quick install can leave it out without ever saying so.</p>
   </div>
 
-  <h2>Epson</h2>
+  <div class="brand-row">
+    <h3><a href="https://printerxr.com/hp-printer-setup/">123.hp.com/setup</a></h3>
+    <p>HP has mostly collapsed the choice into a single app that carries the driver inside it. Simpler, but it means the app is not optional in the way people assume, and removing it takes printing with it.</p>
+  </div>
 
-  <p>An <a href="https://printerxr.com/epson-printer-setup/">Epson Printer Setup</a> usually runs through Epson's own setup utility on a computer, or the Smart Panel app on a phone. Epson splits its software more than the other brands do, so it's worth knowing that the everyday scanning tool and the detailed scanning tool are two separate programs, and a quick install often brings only one of them.</p>
+  <div class="brand-row">
+    <h3><a href="https://printerxr.com/epson-printer-setup/">Epson Printer Setup</a></h3>
+    <p>Epson splits its tools further than anyone else. There is a basic scanning app and a detailed one, and they install separately. If the scan window looks stripped back compared to what a guide describes, you probably have the other one.</p>
+  </div>
 
-  <h2>Brother</h2>
+  <div class="brand-row">
+    <h3><a href="https://printerxr.com/brother-printer-setup/">Brother Printer Setup</a></h3>
+    <p>Brother is the most honest about it, offering the full package and a driver-only download side by side. That transparency is useful, though it does mean people choose driver-only without realising scanning is part of what they declined.</p>
+  </div>
 
-  <p>A <a href="https://printerxr.com/brother-printer-setup/">Brother Printer Setup</a> gives you a choice the others tend to hide: a full software package, or a driver on its own. The driver-only option is genuinely useful if you want the printer without the monitoring tools, but it leaves scanning behind, which catches people out weeks later when they finally need to scan something.</p>
+  <div class="callout">
+    <h3>Already installed and scanning doesn't work?</h3>
+    <p>You don't need to remove anything first. Run the full installer over the top of what's already there, and the missing pieces get added without disturbing the printer you've already set up.</p>
+  </div>
 
-  <h2>Have these ready before you start</h2>
+  <h2>What the driverless route is actually good for</h2>
 
-  <ul>
-    <li>The model number from the label on the printer, not the box.</li>
-    <li>Your Wi-Fi password, typed rather than remembered.</li>
-    <li>Your router's 2.4 GHz network. Most home printers cannot join 5 GHz at all.</li>
-    <li>Mobile data switched off, if you are setting up from a phone. The printer's temporary network has no internet, and phones abandon it mid-setup.</li>
-    <li>A printed network configuration page once you're done. It lists the printer's address, and you'll want it the next time something goes quiet.</li>
-  </ul>
+  <p>It's tempting to skip installation entirely, and for a second computer in the house that's the right call. A laptop that prints a boarding pass twice a year does not need software from a printer manufacturer running on it permanently.</p>
 
-  <p>None of this is difficult. It's just none of it is on the sheet in the box, which is the whole reason independent guides exist.</p>
+  <p>Treat it as a supplement rather than a replacement. One machine in the house gets the full package and handles scanning and maintenance. Everything else prints driverless and stays clean. That split gives you the useful half of both options and is how most households should be set up anyway.</p>
 
-</article>
+  <h2>One thing to do after any install</h2>
 
-<section class="portals">
-  <h2>Setup guides by brand</h2>
-  <ul>
-    <li><a href="https://printerxr.com/canon-printer-setup/">ij.start.canon</a> <span>Canon setup guides and driver links</span></li>
-    <li><a href="https://printerxr.com/hp-printer-setup/">123.hp.com/setup</a> <span>HP setup guides, including HP+ and cartridge notes</span></li>
-    <li><a href="https://printerxr.com/epson-printer-setup/">Epson Printer Setup</a> <span>Wired, wireless and mobile installation steps</span></li>
-    <li><a href="https://printerxr.com/brother-printer-setup/">Brother Printer Setup</a> <span>Full package and driver-only install paths</span></li>
-  </ul>
-</section>
-</div>
+  <p>Open your router's settings and reserve the printer's IP address so it always receives the same one. Printers get found during setup and then remembered by address, so when a power cut shuffles the addresses around, every computer in the house loses the printer at once. Two minutes now, and the install you just finished keeps working.</p>
+
+</main>
 
 <footer>
-  <div class="wrap">
-    <p>More on <a href="https://printerxr.com">Printer Setup</a> and <a href="https://printerxr.com">Printer Driver Download</a> links for every major brand, across Windows, macOS, ChromeOS, Linux, iOS and Android.</p>
-    <p class="disclaimer">PrinterXR is an independent resource and is not affiliated with Canon, HP, Epson or Brother. Drivers and firmware should only ever be downloaded from the manufacturer. No support phone number found through a search result belongs to a printer manufacturer.</p>
-  </div>
+  <p>More on <a href="https://printerxr.com">Printer Setup</a> and <a href="https://printerxr.com">Printer Driver Download</a> for every major brand, with separate steps for each operating system.</p>
+  <p class="fine">PrinterXR is independent and not affiliated with Canon, HP, Epson or Brother. Download drivers and firmware only from the manufacturer. Support phone numbers appearing in search results do not belong to printer manufacturers.</p>
 </footer>
+</div>
 
 </body>
 </html>
